@@ -65,7 +65,7 @@ class PatchEncoder(layers.Layer):
 
 # Load the pre-trained VIT model with custom_objects
 custom_objects = {'Patches': Patches, 'PatchEncoder': PatchEncoder}
-model = tf.keras.models.load_model('C:/Users/Renaldy/OneDrive/Desktop/ann/model_vit.h5', custom_objects=custom_objects)
+model = tf.keras.models.load_model('model_vit.h5', custom_objects=custom_objects)
 class_names = ["Nol", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan"]
 
 # Fungsi untuk melakukan prediksi pada gambar yang diunggah
