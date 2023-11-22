@@ -4,9 +4,7 @@ import tensorflow as tf
 import numpy as np
 from tensorflow import keras
 from tensorflow.keras import layers
-import matplotlib.pyplot as plt
 import cv2
-import tensorflow_addons as tfa
 
 
 num_classes = 10
