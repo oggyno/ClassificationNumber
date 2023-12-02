@@ -7,6 +7,7 @@ from tensorflow.keras import layers
 import cv2
 
 
+
 num_classes = 10
 input_shape = (28, 28, 1)
 batch_size = 32
@@ -68,6 +69,7 @@ custom_objects = {'Patches': Patches, 'PatchEncoder': PatchEncoder}
 model = tf.keras.models.load_model('model_vit.h5', custom_objects=custom_objects, compile=False)
 class_names = ["Nol", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan"]
 
+
 # Fungsi untuk melakukan prediksi pada gambar yang diunggah
 def predict_image(model, img):
     img_array = np.array(img)
@@ -91,16 +93,20 @@ def predict_image(model, img):
 
 # Tampilan Streamlit
 st.title("MNIST Digit Classification")
+check = st.selectbox('Menu : ', ("Upload File", "Link Menuju Data"))
 
-uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png"])
-st.write("Link to testing file : https://drive.google.com/drive/folders/1arUn6k9Kt-tbjoRL7Ew1pS1-SyVi8H75?usp=sharing")
-if uploaded_file is not None:
-    # Tampilkan gambar yang diunggah
-    image = Image.open(uploaded_file)
-    st.image(image, caption="Uploaded Image", use_column_width=True)
+if check == "Upload File":
+    uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png"])
+    if uploaded_file is not None:
+        # Tampilkan gambar yang diunggah
+        image = Image.open(uploaded_file)
+        st.image(image, caption="Uploaded Image", use_column_width=True)
 
-    # Lakukan prediksi saat tombol dipencet
-    if st.button("Predict"):
-        # Lakukan prediksi menggunakan model yang sudah dibuat
-        prediction = predict_image(model, image)
-        st.success(f"Predicted Label: {prediction}")
+        # Lakukan prediksi saat tombol dipencet
+        if st.button("Predict"):
+            # Lakukan prediksi menggunakan model yang sudah dibuat
+            prediction = predict_image(model, image)
+            st.success(f"Predicted Label: {prediction}")
+elif check == 'Link Menuju Data':
+    st.write("Link to testing file : https://drive.google.com/drive/folders/1arUn6k9Kt-tbjoRL7Ew1pS1-SyVi8H75?usp=sharing")
+    st.image('qrcode_mnist.png', caption='Data Uji')
