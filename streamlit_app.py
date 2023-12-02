@@ -93,7 +93,7 @@ def predict_image(model, img):
 st.title("MNIST Digit Classification")
 
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png"])
-
+st.write("Link to testing file : https://drive.google.com/drive/folders/1arUn6k9Kt-tbjoRL7Ew1pS1-SyVi8H75?usp=sharing")
 if uploaded_file is not None:
     # Tampilkan gambar yang diunggah
     image = Image.open(uploaded_file)
